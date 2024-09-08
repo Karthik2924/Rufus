@@ -1,0 +1,8 @@
+requests-html
+beautifulsoup4
+nomic
+cohere
+dotenv
+googlesearch-python
+numpy
+json
