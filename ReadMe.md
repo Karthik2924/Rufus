@@ -1,24 +1,75 @@
-# Rufus : AI Agent for Web Scrawling
+# Rufus: AI-Powered Web Scraping and Data Retrieval Agent
 
-## Main Features : 
-* Can recursively scrape selected web pages
-* Scrawl with web and scrape web pages based on necessity to answer queries.
-* Processes and stores data : Can be used for RAG pipelines later on.
+Rufus is an intelligent web scraping and data retrieval agent that combines web crawling, scraping, and AI-powered text generation to provide comprehensive answers to user queries.
 
-## Setup : 
-* Tested with Python3.9
-* Download the required libraries from requirements.txt
-* create a .env file in the same directory and add API keys for Cohere and Nomic
-* Will update the repository to make the instructions more clear, meanwhile if you have an questions. Feel free to open a pull request or reach out to me.
+## Features
 
-## Documentation : 
-* Rufus.py acts as a wrapper for Crawler, Scraper and deep_scrape methods.
-* Refer to rufus.ipynb for a brief example on how to use some of the methods.
-* For downloading the data to a json file from deep scraper to be used for RAG, you can use the deep_scrape.save_data_to_file method. Provide a path name as input.
+- **Web Scraping**: Extracts visible text and links from web pages.
+- **Deep Web Crawling**: Recursively explores web pages to a specified depth.
+- **Google Search Integration**: Uses Google search to find relevant web pages.
+- **AI-Powered Answer Generation**: Utilizes Cohere's language models to generate human-like responses.
+- **Relevance Scoring**: Implements both Dense Passage Retrieval (DPR) and BM25 for content relevance ranking.
 
-## Near Future Updates
-* Add more scrapers to scrape more difficult dynamic websites and pdfs and other types of urls.
-* Option for parallel processing with multiprocess.
-* Add a streaming optioin to Rufus.
-* Improve documentation and examples.
-  
+## Components
+
+1. **Rufus**: The main class that integrates all functionalities.
+2. **Crawler**: Handles web crawling using Google search.
+3. **Scraper**: Manages web scraping of individual pages and deep crawling.
+4. **Relevance**: Implements relevance scoring methods.
+
+## Installation
+
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+### Basic Usage
+
+```python
+from rufus import Rufus
+
+# Initialize Rufus
+rufus = Rufus()
+
+# Scrape a single URL
+result = rufus.scrape_url("https://example.com")
+
+# Crawl the web for a query
+answer = rufus.crawl_web("What is machine learning?")
+
+# Deep scrape a URL
+answer = rufus.deep_scrape_url("https://example.com", query="How does this website work?")
+```
+
+### Advanced Usage
+
+```python
+# Deep scrape without a query (for data collection)
+rufus.deep_scrape_url("https://example.com", depth=5, max_links=100)
+
+# Access scraped data
+data = rufus.deep_scraper.data_store
+
+# Save scraped data to a file
+rufus.deep_scraper.save_data_to_file("scraped_data.json")
+```
+
+## Configuration
+
+- Set up environment variables:
+  - `COHERE_API_KEY`: Your Cohere API key for text generation.
+  - `NOMIC_API_KEY`: Your Nomic API key for embeddings (if using DPR).
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+None. Will be updated Soon.
+
+## Disclaimer
+
+This tool is for educational and research purposes only. Always respect websites' terms of service and robots.txt files when scraping.
