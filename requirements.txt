@@ -2,7 +2,7 @@ requests-html
 beautifulsoup4
 nomic
 cohere
-dotenv
+python-dotenv
 googlesearch-python
 numpy
-json
+lxml_html_clean
